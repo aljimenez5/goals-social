@@ -1,14 +1,23 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :"/users/signup"
+    if logged_in?(session)
+      redirect "/users"
+    else
+      erb :"/users/signup"
+    end
   end
 
   post '/signup' do
-    if !!User.find_by(username: params[:username], email: params[:username])
+    if params.values.any? &:empty?
+      redirect "/signup"
+      ## raise error
+    elsif !!User.find_by(username: params[:username], email: params[:email])
       redirect "/login"
+      ## raise error
     else
       @user = User.create(params)
+      session[:user_id] = @user.id
       redirect "/users/#{@user.slug}"
     end
   end
@@ -18,14 +27,22 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect "/goals"
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/users"
     else
       redirect "/signup"
     end
 
+  end
+
+  get '/users' do
+    if logged_in?(session)
+      redirect "/users/#{current_user.slug}"
+    else
+      redirect "/login"
+    end
   end
 
   get '/users/:slug' do

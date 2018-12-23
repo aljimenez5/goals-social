@@ -1,5 +1,5 @@
 <h1>Welcome, <%=@user.username%>! </h1>
 
 <% @user.goals.each do |goal| %>
-  <h4>goal.content</h4>
+  <h4><%= goal.content%></h4>
 <%end%>

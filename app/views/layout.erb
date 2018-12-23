@@ -11,9 +11,15 @@
 
     <header>
       <ul class="nav-bar">
-        <li><a href="/goals">Goals Social - Home</a></li>
-        <li><a href="/users">Your Goals</a></li>
-        <li><a href="/users/logout">Logout</a></li>
+        <% if logged_in?(session)%>
+          <li><a href="/">Goals Social - Home</a></li>
+          <li><a href="/users">Your Goals</a></li>
+          <li><a href="/users/<%=current_user.slug%>/logout">Logout</a></li>
+        <%else%>
+          <li><a href="/">Goals Social - Home</a></li>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Log In</a></li>
+        <%end%>
       </ul>
     </header>
 

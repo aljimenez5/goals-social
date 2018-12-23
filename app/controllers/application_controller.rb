@@ -23,11 +23,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    if logged_in?(session)
-      redirect "/users"
-    else
-      erb :'index'
-    end
+    erb :'index'
   end
 
 

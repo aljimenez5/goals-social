@@ -1,0 +1,9 @@
+<h2><%= @goal.user.username%>'s Goal: </h2>
+
+<p><h4><%=@goal.content%></h4></p>
+
+<% @goal.steps.each do |step|%>
+  <ul>
+    <h5><li><%=step.content%></li></h5>
+  </ul>
+<%end%>

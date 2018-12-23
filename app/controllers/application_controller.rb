@@ -19,11 +19,15 @@ class ApplicationController < Sinatra::Base
     def logout!
       session.clear
     end
-    
+
   end
 
   get '/' do
-    erb :'index'
+    if logged_in?(session)
+      redirect "/users"
+    else
+      erb :'index'
+    end
   end
 
 

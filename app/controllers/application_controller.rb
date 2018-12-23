@@ -6,4 +6,11 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "secret_goals_steps"
   end
+
+
+  get '/' do
+    erb :index
+  end
+
+
 end

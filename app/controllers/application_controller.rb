@@ -23,6 +23,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @goals = Goal.all
     erb :'index'
   end
 

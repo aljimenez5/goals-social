@@ -1,5 +1,9 @@
 <h1>Welcome, <%=@user.username%>! </h1>
+<h3>Your goals:</h3>
 
-<% @user.goals.each do |goal| %>
-  <h4><a href="/goals/<%=goal.id%>"><%= goal.content%></a></h4>
-<%end%>
+<div class="container-goals">
+  <% @user.goals.each.with_index(1) do |goal, i| %>
+    <p><%=i%>. <%= goal.content%></p>
+    Steps: <a href="/goals/<%=goal.id%>"><%=goal.steps.count%></a>
+  <%end%>
+</div>

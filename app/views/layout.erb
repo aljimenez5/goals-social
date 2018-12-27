@@ -14,57 +14,70 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/simple-sidebar.css" rel="stylesheet">
+    <link href="../css/portfolio-item.css" rel="stylesheet">
+
   </head>
+
   <body>
-    <div id="wrapper">
-        <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-          <li class="sidebar-brand">
-            <a href="/">
-              Goals Social - Home
-            </a>
-          </li>
 
-          <% if logged_in?(session)%>
-            <li>
-              <a href="/users">
-                Your Goals
-              </a>
-            </li>
-            <li>
-              <a href="/users/<%=current_user.slug%>/logout">
-                Logout
-              </a>
-            </li>
-          <%else%>
-            <li>
-              <a href="/signup">
-                Sign Up
-              </a>
-            </li>
-            <li>
-              <a href="/login">
-                Log In
-              </a>
-            </li>
-          <%end%>
-        </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Goals Social - Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <% if logged_in?(session)%>
+              <li class="nav-item">
+                <a class="nav-link" href="/users">
+                  Your Goals
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/users/<%=current_user.slug%>/logout">
+                  Logout
+                </a>
+              </li>
+            <%else%>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">
+                  Sign Up
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">
+                  Log In
+                </a>
+              </li>
+            <%end%>
+          </ul>
+        </div>
       </div>
-      <!-- /#sidebar-wrapper -->
-    </div>
+    </nav>
 
-      <!-- Page Content -->
-    <div class="page-content-container">
-      <div class="main-formatted-content">
+    <!-- Page Content -->
+    <div class="page-content-wrapper">
+      <div class="page-content-container">
         <%=yield%>
       </div>
     </div>
-      <!-- /#page-content-wrapper -->
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark" id="footer-size">
+      <div class="footer-container">
+        <p class="m-0 text-center text-white">Copyright &copy; Goals Social 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
+
 </html>

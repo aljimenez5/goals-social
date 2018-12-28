@@ -8,14 +8,19 @@ body {
   padding-top: 54px;
 }
 
+h1, h2 {
+  text-align: center;
+}
+
 .page-content-wrapper {
   position: relative;
   min-height: 100%;
 }
 
 .page-content-container {
-  padding: 20px;
-  padding-bottom: 10px;
+  padding: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #footer-size.py-5.bg-dark {

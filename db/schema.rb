@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_23_045854) do
+ActiveRecord::Schema.define(version: 2018_12_28_002319) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "goal_id"
+  end
 
   create_table "goals", force: :cascade do |t|
+    t.string "title"
     t.string "content"
     t.integer "user_id"
   end

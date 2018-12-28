@@ -16,8 +16,14 @@
     <div class="username-bottom">
       source: <a href="/users/<%=goal.user.slug%>"><%=goal.user.username%></a>
     </div>
-    <a href="/goals/<%=goal.id%>/edit" id="edit-click">Edit</a>
-    <a href="/goals/<%=goal.id%>/delete" id="delete-click">Delete</a>
+    <% if current_user == @user %>
+      <a href="/goals/<%=goal.id%>/edit" id="edit-click">Edit</a>
+      <a href="/goals/<%=goal.id%>/delete" id="delete-click">Delete</a>
+    <% else %>
+      <form action="/users/<%=current_user.slug%>/favorites" method="POST">
+        <button type="submit" name="favorite_goal_id" value="<%=goal.id%>" id="favorite">Favorite</button>
+      </form>
+    <%end%>
     <br>
     <br>
   <%end%>

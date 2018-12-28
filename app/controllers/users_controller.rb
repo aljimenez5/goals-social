@@ -38,7 +38,6 @@ class UsersController < ApplicationController
     else
       redirect "/signup"
     end
-
   end
 
   get '/users' do
@@ -65,12 +64,22 @@ class UsersController < ApplicationController
     redirect "/users/#{current_user.slug}/favorites"
   end
 
+  delete '/users/:slug/favorites/delete' do
+    if current_user == User.find_by_slug(params[:slug])
+      favorite_goal = FavoriteGoal.find(params[:favorite_goal_id].to_i)
+      favorite_goal.destroy
+      redirect "/users/#{current_user.slug}/favorites"
+    else
+      redirect "/users/#{current_user.slug}/favorites"
+    end
+  end
+
   get '/users/:slug/logout' do
     logout!
     redirect "/"
   end
 
-  
+
 
 
 end

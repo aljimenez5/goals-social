@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     User.all.select {|user| user.slug == slug}.first
   end
 
+  def favorited?(goal_obj)
+    self.favorites.include?(goal_obj)
+  end
+
 end

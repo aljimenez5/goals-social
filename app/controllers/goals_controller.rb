@@ -2,6 +2,7 @@ class GoalsController < ApplicationController
 
   get '/goals' do
     @goals = Goal.all
+    @favorited_goal = FavoriteGoal.find_by(user_id: current_user.id, goal_id: goal.id)
     erb :"/goals/home"
   end
 

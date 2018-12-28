@@ -1,9 +1,8 @@
 <h1>Welcome to Goals Social Feed! </h1>
 
-<% @goals.each do |goal| %>
 
-
-  <div class="goal-container">
+<div class="goal-container">
+  <% @goals.each do |goal| %>
     <h5><%=goal.title%></h5>
     <%=goal.content%>
     <br>
@@ -21,7 +20,5 @@
     <form action="/users/<%=current_user.slug%>/favorites" method="POST">
       <button type="submit" name="favorite_goal_id" value="<%=goal.id%>" id="favorite">Favorite</button>
     </form>
-
-  </div>
-
-<%end%>
+  <%end%>
+</div>

@@ -1,8 +1,9 @@
 <h1><%=@user.username%>'s goals</h1>
 
+
 <div class="goal-container">
   <% @user.goals.each do |goal| %>
-    <h5><%=goal.title%></h5>
+    <h5><a href="/goals/<%=goal.id%>"><%=goal.title%></a></h5>
     <%=goal.content%>
     <br>
     In <a href="/goals/<%=goal.id%>"><%=goal.steps.count%></a> Steps
@@ -15,6 +16,9 @@
     <div class="username-bottom">
       source: <a href="/users/<%=goal.user.slug%>"><%=goal.user.username%></a>
     </div>
+    <a href="/goals/<%=goal.id%>/edit" id="edit-click">Edit</a>
+    <a href="/goals/<%=goal.id%>/delete" id="delete-click">Delete</a>
     <br>
-  </div>
-<%end%>
+    <br>
+  <%end%>
+</div>

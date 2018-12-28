@@ -1,9 +1,21 @@
 <h2><%= @goal.user.username%>'s Goal: </h2>
 
-<p><h4><%=@goal.content%></h4></p>
-
-<% @goal.steps.each do |step|%>
+<div class="goal-container">
+  <h5><%=@goal.title%></h5>
+  <%=@goal.content%>
+  <br>
+  In <a href="/goals/<%=@goal.id%>"><%=@goal.steps.count%></a> Steps
+  <br>
   <ul>
-    <h5><li><%=step.content%></li></h5>
+    <%@goal.steps.each do |step| %>
+      <li><%=step.content%></li>
+    <%end%>
   </ul>
-<%end%>
+  <div class="username-bottom">
+    source: <a href="/users/<%=@goal.user.slug%>"><%=@goal.user.username%></a>
+  </div>
+  <a href="/goals/<%=@goal.id%>/edit" id="edit-click">Edit</a>
+  <a href="/goals/<%=@goal.id%>/delete" id="delete-click">Delete</a>
+  <br>
+  <br>
+</div>

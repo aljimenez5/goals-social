@@ -1,7 +1,6 @@
 <h2>Create a New Goal</h2>
 
-
-<form action="/goals/new" method="POST">
+<form class="new-goal-form" action="/goals/new" method="POST">
   <p><label for="goal[title]">Goal Title</label>
     <br>
     <input type="text" name="goal[title]" id="title">
@@ -12,7 +11,7 @@
     <input type="textarea" name="goal[content]" id="content">
   </p>
 
-  <p><label for="">Steps</label>
+  <p><label for="steps[step1][content]">Steps</label>
     <br>
     <input type="text" name="steps[step1][content]">
     <br>

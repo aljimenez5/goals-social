@@ -18,7 +18,7 @@ h1, h2 {
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 2.5rem;
+  padding-bottom: 2rem;
   padding-top: 1.5rem;
 }
 
@@ -29,6 +29,9 @@ h1, h2 {
   padding-bottom: 20px;
 }
 
+.page-content-main {
+
+}
 
 .goal-container {
   display: inline-block;
@@ -44,12 +47,23 @@ h1, h2 {
   position: absolute;
   width: 100%;
   bottom: 0;
-  padding-bottom: 1.5rem!important;
+  padding-bottom: 1rem!important;
   padding-top: 1rem!important;
 }
 
 .m-0.text-center.text-white {
   font-size: .7rem;
+}
+
+#edit-click {
+  font-size: .8rem;
+  padding: .2rem;
+}
+
+#delete-click {
+  font-size: .8rem;
+  color: #FF0000;
+  padding: .2rem;
 }
 
 @media (min-width: 992px) {

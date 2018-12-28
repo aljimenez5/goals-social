@@ -1,0 +1,27 @@
+<h2>Edit Goal</h2>
+
+
+<form class="edit-goal-form" action="/goals/<%=@goal.id%>/edit" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="patch"></input>
+
+
+  <p><label for="goal[title]">Goal Title</label>
+    <br>
+    <input type="text" name="goal[title]" value="<%=@goal.title%>">
+  </p>
+
+  <p><label for="goal[content]">Content</label>
+    <br>
+    <input type="textarea" name="goal[content]" value="<%=@goal.content%>">
+  </p>
+
+  <p>
+    <label for="steps">Steps</label>
+    <br>
+    <%@goal.steps.each do |step|%>
+      <input type="text" name="steps[<%=step.id%>][content]" value="<%=step.content%>">
+      <br>
+    <%end%>
+  </p>
+  <input type="submit" value="Edit Goal" id="submit">
+</form>

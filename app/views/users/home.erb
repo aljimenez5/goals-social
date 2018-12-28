@@ -1,8 +1,20 @@
-<h1>Welcome, <%=@user.username%>! </h1>
-<h3>Your goals:</h3>
+<h1><%=@user.username%>'s goals</h1>
 
-
-<% @user.goals.each.with_index(1) do |goal, i| %>
-  <p><%=i%>. <%= goal.content%></p>
-  Steps: <a href="/goals/<%=goal.id%>"><%=goal.steps.count%></a>
+<div class="goal-container">
+  <% @user.goals.each do |goal| %>
+    <h5><%=goal.title%></h5>
+    <%=goal.content%>
+    <br>
+    In <a href="/goals/<%=goal.id%>"><%=goal.steps.count%></a> Steps
+    <br>
+    <ul>
+      <%goal.steps.each do |step|%>
+        <li><%=step.content%></li>
+      <%end%>
+    </ul>
+    <div class="username-bottom">
+      source: <a href="/users/<%=goal.user.slug%>"><%=goal.user.username%></a>
+    </div>
+    <br>
+  </div>
 <%end%>

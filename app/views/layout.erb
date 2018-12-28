@@ -11,74 +11,73 @@
     <title>Goals Social</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/portfolio-item.css" rel="stylesheet">
+    <link href="../../css/portfolio-item.css" rel="stylesheet">
 
   </head>
 
   <body>
+    <div class="main-layout-container">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="/goals">Goals Social - Home</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/goals">Goals Social - Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <% if logged_in?(session)%>
-              <li class="nav-item">
-                <a class="nav-link" href="/users">
-                  Your Goals
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users/<%=current_user.slug%>/favorites">
-                  Your Favorites
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users/<%=current_user.slug%>/logout">
-                  Logout
-                </a>
-              </li>
-            <%else%>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">
-                  Sign Up
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">
-                  Log In
-                </a>
-              </li>
-            <%end%>
-          </ul>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <% if logged_in?(session)%>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users">
+                    Your Goals
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users/<%=current_user.slug%>/favorites">
+                    Your Favorites
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/users/<%=current_user.slug%>/logout">
+                    Logout
+                  </a>
+                </li>
+              <%else%>
+                <li class="nav-item">
+                  <a class="nav-link" href="/signup">
+                    Sign Up
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">
+                    Log In
+                  </a>
+                </li>
+              <%end%>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <!-- Page Content -->
-    <div class="page-content-wrapper">
-      <div class="page-content-container">
+      <!-- Page Content -->
+      <div class="page-content-wrapper">
         <%=yield%>
-      </div>
-    </div>
-    <!-- /.container -->
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark" id="footer-size">
-      <div class="footer-container">
-        <p class="m-0 text-center text-white">Copyright &copy; Goals Social 2018</p>
       </div>
       <!-- /.container -->
-    </footer>
 
+      <!-- Footer -->
+      <footer class="py-5 bg-dark" id="footer-size">
+        <div class="footer-container">
+          <p class="m-0 text-center text-white">Copyright &copy; Goals Social 2018</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+    </div>
   </body>
 
 </html>

@@ -59,10 +59,18 @@ class UsersController < ApplicationController
     erb :"/users/show_favorites"
   end
 
+  post '/users/:slug/favorites' do
+    goal = Goal.find(params[:favorite_goal_id].to_i)
+    current_user.favorites << goal
+    redirect "/users/#{current_user.slug}/favorites"
+  end
+
   get '/users/:slug/logout' do
     logout!
     redirect "/"
   end
+
+  
 
 
 end

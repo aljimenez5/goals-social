@@ -1,4 +1,4 @@
-<h1>Welcome to Goals Social Home! </h1>
+<h1>Welcome to Goals Social Feed! </h1>
 
 <% @goals.each do |goal| %>
 
@@ -19,8 +19,7 @@
     </div>
     <br>
     <form action="/users/<%=current_user.slug%>/favorites" method="POST">
-      <input type="checkbox" name="favorite" value="<%=genre.id%>" id="<%=genre.name%>"
-      <input type="submit" value="Favorite" id="favorite">
+      <button type="submit" name="favorite_goal_id" value="<%=goal.id%>" id="favorite">Favorite</button>
     </form>
 
   </div>

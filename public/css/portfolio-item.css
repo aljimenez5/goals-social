@@ -7,31 +7,31 @@
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 1.5rem;
-  padding-top: 54px;
-  min-height: 100%;
 }
 
 h1, h2 {
   text-align: center;
 }
 
-
+.main-layout-container {
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 2.5rem;
+  padding-top: 1.5rem;
+}
 
 .page-content-wrapper {
   position: relative;
-
-}
-
-.page-content-container {
   padding: 50px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
+
 .goal-container {
   display: inline-block;
-
   padding: 20px;
 
 }

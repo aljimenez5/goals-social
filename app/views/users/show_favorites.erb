@@ -1,7 +1,20 @@
 <h1><%=@user.username%>'s Favorites:</h1>
-<%@user.favorites.each do |fave|%>
-  <%=fave.goal_obj.content%>
-  <br>
-  <%=fave.goal_obj.user.username%>
 
-<%end%>
+<div class="goal-container">
+  <%@user.favorites.each do |fave|%>
+    <h5><%=fave.title%></h5>
+    <%=fave.content%>
+    <br>
+    In <a href="/goals/<%=fave.id%>"><%=fave.steps.count%></a> Steps
+    <br>
+    <ul>
+      <%fave.steps.each do |step|%>
+        <li><%=step.content%></li>
+      <%end%>
+    </ul>
+    <div class="username-bottom">
+      source: <a href="/users/<%=fave.user.slug%>"><%=fave.user.username%></a>
+    </div>
+    <br>
+  <%end%>
+</div>

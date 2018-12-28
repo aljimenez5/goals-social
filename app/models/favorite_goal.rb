@@ -1,6 +1,6 @@
-class Favorite < ActiveRecord::Base
+class FavoriteGoal < ActiveRecord::Base
   belongs_to :user
-  has_many :goals
+  belongs_to :goal
 
 
   def goal_obj

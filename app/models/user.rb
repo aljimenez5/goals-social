@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   has_many :goals
   has_many :steps, through: :goals
-  has_many :favorites
+  has_many :favorite_goals
+  has_many :favorites, through: :favorite_goals, source: :goal
   has_secure_password
 
 

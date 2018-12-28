@@ -1,12 +1,8 @@
 class GoalsController < ApplicationController
 
   get '/goals' do
-    if logged_in?(session)
-      @goals = Goal.all
-      erb :"/users/home"
-    else
-      redirect "/login"
-    end
+    @goals = Goal.all
+    erb :"/goals/home"
   end
 
   get '/goals/:id' do

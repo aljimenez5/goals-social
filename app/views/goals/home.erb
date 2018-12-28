@@ -1,6 +1,24 @@
 <h1>Welcome to Goals Social Home! </h1>
 
 <% @goals.each do |goal| %>
-  <h4><%= goal.content%></h4>
-  <h5><%= goal.user.username%></h5>
+
+
+  <div class="goal-container">
+    <h5><%=goal.title%></h5>
+    <%=goal.content%>
+    <br>
+    In <a href="/goals/<%=goal.id%>"><%=goal.steps.count%></a> Steps
+    <br>
+    <ul>
+      <%goal.steps.each do |step|%>
+        <li><%=step.content%></li>
+      <%end%>
+    </ul>
+    <div class="username-bottom">
+      source: <a href="/user/<%=goal.user.slug%>"><%=goal.user.username%></a>
+    </div>
+    <br>
+
+  </div>
+
 <%end%>

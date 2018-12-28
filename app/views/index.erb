@@ -1,16 +1,2 @@
 <h1>Goals Social!</h1>
 <h2>Step Up to Your Goals!</h2>
-
-
-<% @goals.each do |goal| %>
-
-
-  <div class="container-goals">
-    <p><%= goal.content %></p>
-    Steps: <a href="/goals/<%=goal.id%>"><%=goal.steps.count%></a>
-    <br>
-    Created By: <a href="/user/<%=goal.user.slug%>"><%=goal.user.username%></a>
-
-  </div>
-
-<%end%>

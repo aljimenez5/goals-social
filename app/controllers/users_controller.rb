@@ -50,16 +50,19 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    
     @user = User.find_by_slug(params[:slug])
     erb :"/users/home"
+  end
 
-
+  get '/users/:slug/favorites' do
+    @user = current_user
+    erb :"/users/show_favorites"
   end
 
   get '/users/:slug/logout' do
     logout!
     redirect "/"
   end
+
 
 end

@@ -20,11 +20,9 @@ class ApplicationController < Sinatra::Base
       session.clear
     end
 
-
   end
 
   get '/' do
-    @goals = Goal.all
     erb :'index'
   end
 

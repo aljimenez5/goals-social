@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?(session)
-      redirect "/users"
+      redirect "/users/#{current_user.slug}"
     else
       erb :"/users/signup"
     end
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if params.values.any? &:empty?
       redirect "/signup"
       ## raise error
-    elsif !!User.find_by(username: params[:username], email: params[:email])
+    elsif !!User.find_by(email: params[:email]) || !!User.find_by(username: params[:username])
       redirect "/login"
       ## raise error
     else
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?(session)
-      redirect "/users"
+      redirect "/users/#{current_user.slug}"
     else
       erb :"/users/login"
     end
@@ -34,9 +34,10 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/users"
-    else
-      redirect "/signup"
+      redirect "/users/#{current_user.slug}"
+    else @user & !@user.authenticate(params[:password]) || !@user
+      redirect "/login"
+      #raise error wrong email and/or password
     end
   end
 
@@ -54,18 +55,25 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug/favorites' do
-    if current_user.id == User.find_by_slug(params[:slug]).id
+    if !logged_in?(session)
+      redirect "/login"
+    elsif current_user.id == User.find_by_slug(params[:slug]).id
       @user = current_user
       erb :"/users/show_favorites"
     else
       redirect "/users/#{current_user.slug}"
+      #raise error unable to see other users favorites
     end
   end
- 
+
   post '/users/:slug/favorites' do
     goal = Goal.find(params[:favorite_goal_id].to_i)
     current_user.favorites << goal
     redirect "/users/#{current_user.slug}/favorites"
+  end
+
+  get '/users/:slug/favorites/delete' do
+    redirect "/users/#{params[:slug]}"
   end
 
   delete '/users/:slug/favorites/delete' do
@@ -79,8 +87,12 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug/logout' do
-    logout!
-    redirect "/"
+    if current_user != User.find_by_slug(params[:slug])
+      redirect "/users/#{current_user.slug}"
+    else
+      logout!
+      redirect "/"
+    end
   end
 
 

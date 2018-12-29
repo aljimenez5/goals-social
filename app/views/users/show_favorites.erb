@@ -26,7 +26,7 @@
     <div class="username-bottom">
       source: <a href="/users/<%=fave.user.slug%>"><%=fave.user.username%></a>
     </div>
-    
+
     <form action="/users/<%=current_user.slug%>/favorites/delete" method="POST">
       <input type="hidden" id="hidden" name="_method" value="delete"></input>
       <button type="submit" name="favorite_goal_id" value="<%=@favorited_goal.id%>" id="favorite">Un-Favorite</button>

@@ -10,8 +10,9 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params.values.any? &:empty?
+      flash[:message] = "All fields are required."
       redirect "/signup"
-      ## raise error
+
     elsif !!User.find_by(email: params[:email]) || !!User.find_by(username: params[:username])
       redirect "/login"
       ## raise error
@@ -32,12 +33,15 @@ class UsersController < ApplicationController
 
   post '/login' do
     @user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
+    if params.values.any? &:empty?
+      flash[:message] = "All fields are required."
+      redirect "/login"
+    elsif @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/users/#{current_user.slug}"
-    else @user & !@user.authenticate(params[:password]) || !@user
+    elsif @user && !@user.authenticate(params[:password]) || !@user
+      flash[:message] = "Wrong email and/or password."
       redirect "/login"
-      #raise error wrong email and/or password
     end
   end
 
@@ -61,8 +65,8 @@ class UsersController < ApplicationController
       @user = current_user
       erb :"/users/show_favorites"
     else
+      flash[:message] = "Unable to see other users' favorites."
       redirect "/users/#{current_user.slug}"
-      #raise error unable to see other users favorites
     end
   end
 

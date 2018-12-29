@@ -1,3 +1,9 @@
+<div class="error-message">
+  <% if !!flash[:message] %>
+    <%= flash[:message] %>
+  <% end %>
+</div>
+
 <div class="heading-dropdown">
   <h1>Welcome to Goals Social Feed! </h1>
 </div>
@@ -18,7 +24,7 @@
     <div class="username-bottom">
       source: <a href="/users/<%=goal.user.slug%>"><%=goal.user.username%></a>
     </div>
-    
+
     <%@favorited_goal = FavoriteGoal.find_by(user_id: current_user.id, goal_id: goal.id) if logged_in?(session)%>
 
     <%if logged_in?(session) && !current_user.favorited?(goal)%>

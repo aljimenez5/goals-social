@@ -48,7 +48,6 @@ class GoalsController < ApplicationController
     elsif current_user.id == @goal.user_id
       @goal.update(params[:goal])
       params[:steps].each do |step|
-
         if !params[:steps][step[0].to_sym][:content].empty? && Step.exists?(step[0])
           @step_obj = Step.find(step[0])
           @step_obj.update(params[:steps][step[0].to_sym])

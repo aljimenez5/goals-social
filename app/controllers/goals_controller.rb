@@ -52,7 +52,7 @@ class GoalsController < ApplicationController
     if current_user == Goal.find(params[:id]).user
       goal = Goal.find(params[:delete_click])
       goal.destroy
-      redirect "/users/#{current_user}"
+      redirect "/users/#{current_user.slug}"
     else
       redirect "/goals/#{params[:id].to_i}"
     end

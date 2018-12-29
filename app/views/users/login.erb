@@ -1,11 +1,29 @@
-<h1>Goals Social</h1>
 <h2>Login</h2>
 
+<br>
 
 <form class="login-form" action="/login" method="POST">
-  <p><label for="email">Email: </label><input type="text" name="email" id="email"></p>
+  <p><label for="email">Email:</label>
+    <br>
+    <input type="text" name="email" id="email">
+  </p>
 
-  <p><label for="password">Password: </label><input type="text" name="password" id="password"></p>
+  <p><label for="myInput">Password:</label>
+    <br>
+    <input type="password" name="password" id="myInput">
+    <input type="checkbox" onclick="myFunction()" id="show-pw"> show password
+  </p>
 
   <input type="submit" value="Login" id="submit">
 </form>
+
+<script type="text/javascript">
+  function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>

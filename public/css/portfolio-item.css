@@ -4,13 +4,31 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-portfolio-item/blob/master/LICENSE)
  */
 
-body {
-  position: relative;
-  margin: 0;
+html {
+  padding-top: 5rem;
+  background-color: #000;
+  background-image: url(../images/goals-background.jpg);
+  background-origin: padding-box;
+  background-repeat: repeat;
+  background-size: 25%;
+  border-top: 3rem solid #343a40;
 }
 
-h1, h2 {
+body {
+  position: relative;
+  margin: auto;
+  width: 70%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: whitesmoke;
+}
+
+p.index-pg {
   text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: .3rem .3rem rgba(0,0,0,0.2);
 }
 
 .main-layout-container {
@@ -18,28 +36,136 @@ h1, h2 {
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
   padding-top: 1.5rem;
+  background-color: #FFFFFF;
+  margin: auto;
 }
 
 .page-content-wrapper {
   position: relative;
-  padding: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  opacity: .8;
 }
 
-.page-content-main {
-
+.heading-dropdown{
+  padding: 1rem;
+}
+.heading-dropdown h1 {
+  display: inline-block;
 }
 
 .goal-container {
+  padding-top: 2rem;
+  padding: 1.5rem;
+  width: 50%;
+  height: 20rem;
+  float: left;
+}
+
+.dropbtn {
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
   display: inline-block;
-  padding: 20px;
+  float: right;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  min-width: 15rem;
+  background-color: #FFFFFF;
+  box-shadow: 0px 8px 16px 0px;
+  z-index: 1;
+}
+
+
+.dropdown-content a {
+  color: black;
+  padding: 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: ##6c757d;
+}
+
+
+
+#edit-click {
+  font-size: .8rem;
+  padding: .2rem;
+  width: 8em;
+}
+
+#delete-click {
+  font-size: .8rem;
+  color: #FF0000;
+  padding: .2rem;
+  width: 8em;
+}
+
+#favorite, #submit {
+  font-size: .8rem;
+  padding: .2rem;
+  width: 8em;
 
 }
 
+.new-goal-link {
+  font-size: 1rem;
+  padding: .2rem;
+  position: relative;
+}
+
+.index-button-container {
+  text-align: center;
+  padding: 4rem;
+}
+
+.index-button#enter-site {
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.index-button#enter-site:hover {
+  background-color: #f1f1f1;
+  color: #343a40;
+}
+
 .username-bottom {
+  font-size: .8rem;
+  padding-bottom: .5rem;
+}
+
+p#show-pw {
   font-size: .8rem;
 }
 
@@ -49,36 +175,15 @@ h1, h2 {
   bottom: 0;
   padding-bottom: 1rem!important;
   padding-top: 1rem!important;
+  margin: auto;
 }
 
 .m-0.text-center.text-white {
   font-size: .7rem;
 }
 
-#edit-click {
-  font-size: .8rem;
-  padding: .2rem;
-  width: 5em;
-}
-
-#delete-click {
-  font-size: .8rem;
-  color: #FF0000;
-  padding: .2rem;
-  width: 5em;
-}
-
-#favorite {
-  font-size: .8rem;
-  padding: .2rem;
-  width: 8em;
-}
-
-
-
-
 @media (min-width: 992px) {
   body {
-    padding-top: 56px;
+
   }
 }

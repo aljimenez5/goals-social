@@ -1,8 +1,17 @@
-<h1><%=@user.username%>'s Favorites:</h1>
+<div class="heading-dropdown">
+  <h1><%=@user.username%>'s Favorites:</h1>
+  <div class="dropdown">
+    <button class="dropbtn">Actions</button>
+    <div class="dropdown-content">
+      <a href="/goals/new" class="new-goal-link">Create a new goal</a>
+      <a href="/goals" class="explore-goals-link">Explore goals</a>
+    </div>
+  </div>
+</div>
 
 
-<div class="goal-container">
-  <%@user.favorites.each do |fave|%>
+<%@user.favorites.each do |fave|%>
+  <div class="goal-container">
     <h5><a href="/goals/<%=fave.id%>"><%=fave.title%></a></h5>
     <%=fave.content%>
     <br>
@@ -17,11 +26,10 @@
     <div class="username-bottom">
       source: <a href="/users/<%=fave.user.slug%>"><%=fave.user.username%></a>
     </div>
-    <br>
+    
     <form action="/users/<%=current_user.slug%>/favorites/delete" method="POST">
       <input type="hidden" id="hidden" name="_method" value="delete"></input>
       <button type="submit" name="favorite_goal_id" value="<%=@favorited_goal.id%>" id="favorite">Un-Favorite</button>
     </form>
-
-  <%end%>
-</div>
+  </div>
+<%end%>

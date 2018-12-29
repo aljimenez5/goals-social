@@ -48,11 +48,15 @@ class GoalsController < ApplicationController
     elsif current_user.id == @goal.user_id
       @goal.update(params[:goal])
       params[:steps].each do |step|
-        @step_obj = Step.find(step[0].to_i)
-        if !params[:steps][step[0].to_sym][:content].empty?
-          @step_obj.update(params[:steps][step[0].to_sym]) || @goal.steps << Step.create(params[:steps][step[0].to_sym])
-        elsif params[:steps][step[0].to_sym][:content].empty?
-          @step_obj.destroy
+
+        if !params[:steps][step[0].to_sym][:content].empty? && Step.exists?(step[0])
+          @step_obj = Step.find(step[0])
+          @step_obj.update(params[:steps][step[0].to_sym])
+        elsif !params[:steps][step[0].to_sym][:content].empty? && !Step.exists?(step[0])
+          @new_step_obj = Step.create(params[:steps][step[0].to_sym])
+          @goal.steps << @new_step_obj
+        elsif params[:steps][step[0].to_sym][:content].empty? && Step.exists?(step[0])
+          Step.find(step[0]).destroy
         end
       end
       flash[:message] = "Goal successfully updated."

@@ -10,12 +10,20 @@ class GoalsController < ApplicationController
   end
 
   post '/goals/new' do
-    @goal = Goal.create(params[:goal])
-    current_user.goals << @goal
-    params[:steps].each do |step|
-      @goal.steps << Step.create(params[:steps][step[0].to_sym]) unless params[:steps][step[0].to_sym][:content].empty?
+    if params[:goal].values.any? &:empty?
+      flash[:message] = "Title and content fields are required."
+      redirect "/goals/new"
+    elsif !!Goal.find_by(title: params[:goal][:title], content: params[:goal][:content])
+      flash[:message] = "Goal already exists."
+      redirect "/users/#{current_user.slug}"
+    else
+      @goal = Goal.create(params[:goal])
+      current_user.goals << @goal
+      params[:steps].each do |step|
+        @goal.steps << Step.create(params[:steps][step[0].to_sym]) unless params[:steps][step[0].to_sym][:content].empty?
+        redirect "/users/#{current_user.slug}"
+      end
     end
-    redirect "/users/#{current_user.slug}"
   end
 
   get '/goals/:id' do
@@ -34,7 +42,10 @@ class GoalsController < ApplicationController
 
   patch '/goals/:id/edit' do
     @goal = Goal.find(params[:id])
-    if current_user.id == @goal.user_id
+    if params[:goal].values.any? &:empty?
+      flash[:message] = "Title and content fields are required."
+      redirect "/goals/#{@goal.id}"
+    elsif current_user.id == @goal.user_id
       @goal.update(params[:goal])
       params[:steps].each do |step|
         @step_obj = Step.find(step[0].to_i)
@@ -44,6 +55,7 @@ class GoalsController < ApplicationController
           @step_obj.destroy
         end
       end
+      flash[:message] = "Goal successfully updated."
       redirect "/goals/#{@goal.id}"
     end
   end
@@ -52,8 +64,10 @@ class GoalsController < ApplicationController
     if current_user == Goal.find(params[:id]).user
       goal = Goal.find(params[:delete_click])
       goal.destroy
+      flash[:message] = "Deleted successfully."
       redirect "/users/#{current_user.slug}"
     else
+      flash[:message] = "Unable to delete."
       redirect "/goals/#{params[:id].to_i}"
     end
   end

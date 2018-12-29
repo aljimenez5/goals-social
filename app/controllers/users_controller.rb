@@ -12,10 +12,9 @@ class UsersController < ApplicationController
     if params.values.any? &:empty?
       flash[:message] = "All fields are required."
       redirect "/signup"
-
-    elsif !!User.find_by(email: params[:email]) || !!User.find_by(username: params[:username])
+    elsif User.exists?(email: params[:email]) || User.exists?(username: params[:username])
+      flash[:message] = "Username and/or Email already exists."
       redirect "/login"
-      ## raise error
     else
       @user = User.create(params)
       session[:user_id] = @user.id

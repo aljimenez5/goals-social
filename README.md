@@ -10,7 +10,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/aljime
 
 ## License
 
-The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT). View [here](https://github.com/aljimenez5/goals-social/blob/master/LICENSE).
 
 ## Code of Conduct
 

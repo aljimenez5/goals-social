@@ -17,6 +17,8 @@
       source: <a href="/users/<%=goal.user.slug%>"><%=goal.user.username%></a>
     </div>
     <br>
+    <%@favorited_goal = FavoriteGoal.find_by(user_id: current_user.id, goal_id: goal.id)%>
+
     <%if !current_user.favorited?(goal)%>
       <form action="/users/<%=current_user.slug%>/favorites" method="POST">
         <button type="submit" name="favorite_goal_id" value="<%=goal.id%>" id="favorite">Favorite</button>

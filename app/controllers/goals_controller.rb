@@ -2,7 +2,6 @@ class GoalsController < ApplicationController
 
   get '/goals' do
     @goals = Goal.all
-    @favorited_goal = FavoriteGoal.find_by(user_id: current_user.id, goal_id: goal.id)
     erb :"/goals/home"
   end
 
@@ -46,6 +45,16 @@ class GoalsController < ApplicationController
         end
       end
       redirect "/goals/#{@goal.id}"
+    end
+  end
+
+  delete '/goals/:id/delete' do
+    if current_user == Goal.find(params[:id]).user
+      goal = Goal.find(params[:delete_click])
+      goal.destroy
+      redirect "/users/#{current_user}"
+    else
+      redirect "/goals/#{params[:id].to_i}"
     end
   end
 

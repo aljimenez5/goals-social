@@ -58,13 +58,24 @@ h1, h2 {
 #edit-click {
   font-size: .8rem;
   padding: .2rem;
+  width: 5em;
 }
 
 #delete-click {
   font-size: .8rem;
   color: #FF0000;
   padding: .2rem;
+  width: 5em;
 }
+
+#favorite {
+  font-size: .8rem;
+  padding: .2rem;
+  width: 8em;
+}
+
+
+
 
 @media (min-width: 992px) {
   body {

@@ -3,7 +3,7 @@
 
 <div class="goal-container">
   <%@user.favorites.each do |fave|%>
-    <h5><%=fave.title%></h5>
+    <h5><a href="/goals/<%=fave.id%>"><%=fave.title%></a></h5>
     <%=fave.content%>
     <br>
     In <a href="/goals/<%=fave.id%>"><%=fave.steps.count%></a> Steps
@@ -13,19 +13,15 @@
         <li><%=step.content%></li>
       <%end%>
     </ul>
+    <%@favorited_goal = FavoriteGoal.find_by(user_id: current_user.id, goal_id: fave.id)%>
     <div class="username-bottom">
       source: <a href="/users/<%=fave.user.slug%>"><%=fave.user.username%></a>
     </div>
     <br>
-    <%if !current_user.favorited?(fave)%>
-      <form action="/users/<%=current_user.slug%>/favorites" method="POST">
-        <button type="submit" name="favorite_goal_id" value="<%=goal.id%>" id="favorite">Favorite</button>
-      </form>
-    <% else%>
-      <form action="/users/<%=current_user.slug%>/favorites/delete" method="POST">
-        <input type="hidden" id="hidden" name="_method" value="delete"></input>
-        <button type="submit" name="favorite_goal_id" value="<%=fave.id%>" id="favorite">Un-Favorite</button>
-      </form>
-    <%end%>
+    <form action="/users/<%=current_user.slug%>/favorites/delete" method="POST">
+      <input type="hidden" id="hidden" name="_method" value="delete"></input>
+      <button type="submit" name="favorite_goal_id" value="<%=@favorited_goal.id%>" id="favorite">Un-Favorite</button>
+    </form>
+
   <%end%>
 </div>

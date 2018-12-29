@@ -13,15 +13,27 @@
         <li><%=step.content%></li>
       <%end%>
     </ul>
+    <%@favorited_goal = FavoriteGoal.find_by(user_id: current_user.id, goal_id: goal.id)%>
     <div class="username-bottom">
       source: <a href="/users/<%=goal.user.slug%>"><%=goal.user.username%></a>
     </div>
     <% if current_user == @user %>
-      <a href="/goals/<%=goal.id%>/edit" id="edit-click">Edit</a>
-      <a href="/goals/<%=goal.id%>/delete" id="delete-click">Delete</a>
-    <% else %>
+      <form action="/goals/<%=goal.id%>/edit" method="GET">
+        <button type="submit" name="submit" id="edit-click">Edit</button>
+      </form>
+      <form action="/goals/<%=goal.id%>/delete" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="delete"></input>
+        <button type="submit" name="delete_click" value="<%=goal.id%>" id="delete-click">Delete</button>
+      </form>
+
+    <% elsif current_user != @user && !current_user.favorited?(goal)%>
       <form action="/users/<%=current_user.slug%>/favorites" method="POST">
         <button type="submit" name="favorite_goal_id" value="<%=goal.id%>" id="favorite">Favorite</button>
+      </form>
+    <% else %>
+      <form action="/users/<%=current_user.slug%>/favorites/delete" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="delete"></input>
+        <button type="submit" name="favorite_goal_id" value="<%=@favorited_goal.id%>" id="favorite">Un-Favorite</button>
       </form>
     <%end%>
     <br>

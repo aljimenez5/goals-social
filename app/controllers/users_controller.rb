@@ -54,10 +54,14 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug/favorites' do
-    @user = current_user
-    erb :"/users/show_favorites"
+    if current_user.id == User.find_by_slug(params[:slug]).id
+      @user = current_user
+      erb :"/users/show_favorites"
+    else
+      redirect "/users/#{current_user.slug}"
+    end
   end
-
+ 
   post '/users/:slug/favorites' do
     goal = Goal.find(params[:favorite_goal_id].to_i)
     current_user.favorites << goal

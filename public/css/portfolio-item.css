@@ -111,8 +111,6 @@ p.index-pg {
   background-color: ##6c757d;
 }
 
-
-
 #edit-click {
   font-size: .8rem;
   padding: .2rem;
@@ -126,11 +124,15 @@ p.index-pg {
   width: 8em;
 }
 
+#edit-click:hover, #delete-click:hover, #favorite:hover, #submit:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
 #favorite, #submit {
   font-size: .8rem;
   padding: .2rem;
   width: 8em;
-
 }
 
 .new-goal-link {

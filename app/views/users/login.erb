@@ -1,8 +1,9 @@
-<div class="error-message">
-  <% if !!flash[:message] %>
+<% if !!flash[:message] %>
+  <div class="alert alert-info">
     <%= flash[:message] %>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
 
 <h2>Login</h2>
 

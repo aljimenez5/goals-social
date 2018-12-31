@@ -12,13 +12,14 @@ class UsersController < ApplicationController
     if params.values.any? &:empty?
       flash[:message] = "All fields are required."
       redirect "/signup"
-    elsif User.exists?(email: params[:email]) || User.exists?(username: params[:username])
-      flash[:message] = "Username and/or Email already exists."
-      redirect "/login"
-    else
-      @user = User.create(params)
+    elsif !User.exists?(email: params[:email].strip) && !User.exists?(username: params[:username].strip) && !User.exists?(email: params[:email].strip.downcase) && !User.exists?(username: params[:username].strip.downcase)
+      new_params = downcase_strip_params(params)
+      @user = User.create(new_params)
       session[:user_id] = @user.id
       redirect "/users/#{@user.slug}"
+    else
+      flash[:message] = "Username and/or Email already exists."
+      redirect "/login"
     end
   end
 
@@ -40,6 +41,9 @@ class UsersController < ApplicationController
       redirect "/users/#{current_user.slug}"
     elsif @user && !@user.authenticate(params[:password]) || !@user
       flash[:message] = "Wrong email and/or password."
+      redirect "/login"
+    else
+      flash[:message] = "Unable to complete request. Please try again."
       redirect "/login"
     end
   end
@@ -97,8 +101,6 @@ class UsersController < ApplicationController
       redirect "/"
     end
   end
-
-
 
 
 end

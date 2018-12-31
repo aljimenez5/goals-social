@@ -31,3 +31,33 @@ another_goal.steps << luc_step
 another_goal.steps << luc_step2
 another_goal.steps << luc_step3
 another_goal.steps << luc_step4
+
+
+someboy = User.create({:username => "Illy", :email => "illy@email.com", :password => "someone"})
+
+more_goal = Goal.create({:title => "Hunger", :content => "Stop being hungry all the time"})
+
+someboy.goals << more_goal
+
+some_step = Step.create({:content => "Eat smaller meals more frequently"})
+some_step2 = Step.create({:content => "Do not overeat"})
+some_step3 = Step.create({:content => "Drink water"})
+
+more_goal.steps << some_step
+more_goal.steps << some_step2
+more_goal.steps << some_step3
+
+
+somegirl = User.create({:username => "mini", :email => "mini@email.com", :password => "someoneelse"})
+
+g_goal = Goal.create({:title => "Sports", :content => "Become more active"})
+
+somegirl.goals << g_goal
+
+g_step = Step.create({:content => "Walk more often"})
+g_step2 = Step.create({:content => "Find local leagues"})
+g_step3 = Step.create({:content => "Find afterwork teams"})
+
+g_goal.steps << g_step
+g_goal.steps << g_step2
+g_goal.steps << g_step3

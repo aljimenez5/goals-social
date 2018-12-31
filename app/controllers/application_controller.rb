@@ -23,6 +23,16 @@ class ApplicationController < Sinatra::Base
       session.clear
     end
 
+    def downcase_strip_params(params)
+      params.update(params) do |key, value|
+        if key == :username || key == :email
+          value.strip.downcase
+        else
+          value
+        end
+      end
+    end
+
   end
 
   get '/' do

@@ -6,7 +6,12 @@ class GoalsController < ApplicationController
   end
 
   get '/goals/new' do
-    erb :"/goals/new"
+    if !logged_in?(session)
+      flash[:message] = "Please log in before creating a goal."
+      redirect "/login"
+    else
+      erb :"/goals/new"
+    end
   end
 
   post '/goals/new' do
@@ -21,8 +26,8 @@ class GoalsController < ApplicationController
       current_user.goals << @goal
       params[:steps].each do |step|
         @goal.steps << Step.create(params[:steps][step[0].to_sym]) unless params[:steps][step[0].to_sym][:content].empty?
-        redirect "/users/#{current_user.slug}"
       end
+      redirect "/users/#{current_user.slug}"
     end
   end
 
@@ -33,9 +38,12 @@ class GoalsController < ApplicationController
 
   get '/goals/:id/edit' do
     @goal = Goal.find(params[:id])
-    if current_user.id == @goal.user_id
+    if !logged_in?(session)
+      redirect "/login"
+    elsif current_user.id == @goal.user_id
       erb :"/goals/edit"
     else
+      flash[:message] = "Cannot edit someone else's goal."
       redirect "/goals/#{@goal.id}"
     end
   end

@@ -50,7 +50,9 @@ class GoalsController < ApplicationController
 
   patch '/goals/:id/edit' do
     @goal = Goal.find(params[:id])
-    if params[:goal].values.any? &:empty?
+    if current_user.id != @goal.user_id
+      redirect "/users/#{current_user.slug}"
+    elsif params[:goal].values.any? &:empty?
       flash[:message] = "Title and content fields are required."
       redirect "/goals/#{@goal.id}"
     elsif current_user.id == @goal.user_id
@@ -65,6 +67,7 @@ class GoalsController < ApplicationController
         elsif params[:steps][step[0].to_sym][:content].empty? && Step.exists?(step[0])
           Step.find(step[0]).destroy
         end
+
       end
       flash[:message] = "Goal successfully updated."
       redirect "/goals/#{@goal.id}"

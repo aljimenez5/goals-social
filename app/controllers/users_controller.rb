@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     redirect "/users/#{params[:slug]}"
   end
 
-  delete '/users/:slug/favorites/delete' do
+  delete '/users/:slug/favorites' do
     if current_user == User.find_by_slug(params[:slug])
       favorite_goal = FavoriteGoal.find(params[:favorite_goal_id].to_i)
       favorite_goal.destroy

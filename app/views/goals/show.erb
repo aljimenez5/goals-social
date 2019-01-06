@@ -34,7 +34,7 @@
     <form action="/goals/<%=@goal.id%>/edit" method="GET">
       <button type="submit" name="submit" id="edit-click">Edit</button>
     </form>
-    <form action="/goals/<%=@goal.id%>/delete" method="POST">
+    <form action="/goals/<%=@goal.id%>" method="POST">
       <input type="hidden" id="hidden" name="_method" value="delete"></input>
       <button type="submit" name="delete_click" value="<%=@goal.id%>" id="delete-click">Delete</button>
     </form>

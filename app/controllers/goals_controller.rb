@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  post '/goals/new' do
+  post '/goals' do
     if params[:goal].values.any? &:empty?
       flash[:message] = "Title and content fields are required."
       redirect "/goals/new"
@@ -48,7 +48,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  patch '/goals/:id/edit' do
+  patch '/goals/:id' do
     @goal = Goal.find(params[:id])
     if current_user.id != @goal.user_id
       redirect "/users/#{current_user.slug}"
@@ -74,7 +74,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  delete '/goals/:id/delete' do
+  delete '/goals/:id' do
     if current_user == Goal.find(params[:id]).user
       goal = Goal.find(params[:delete_click])
       goal.destroy

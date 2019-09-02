@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ruby'
 gem 'sinatra'
 gem 'activerecord', '>= 4.2.7.1', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
@@ -13,6 +14,7 @@ gem 'sinatra-flash'
 gem 'rack-flash3'
 gem 'bcrypt'
 gem 'tux'
+
 
 
 group :test do

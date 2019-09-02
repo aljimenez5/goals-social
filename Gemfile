@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.6.1'
+
 gem 'bundler', '~> 2.0.2'
 gem 'sinatra'
 gem 'activerecord', '>= 4.2.7.1', :require => 'active_record'
@@ -14,6 +16,7 @@ gem 'sinatra-flash'
 gem 'rack-flash3'
 gem 'bcrypt'
 gem 'tux'
+gem 'puma'
 
 
 

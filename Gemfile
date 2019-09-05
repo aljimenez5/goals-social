@@ -4,11 +4,11 @@ ruby '2.6.1'
 
 gem 'bundler', '~> 2.0.2'
 gem 'sinatra'
-gem 'activerecord', '>= 4.2.7.1', :require => 'active_record'
+gem 'activerecord', '~> 4.2.6', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 gem 'thin'
 gem 'shotgun'
 gem 'pry'
@@ -17,7 +17,7 @@ gem 'rack-flash3'
 gem 'bcrypt'
 gem 'tux'
 gem 'puma'
-
+gem 'sqlite3', '~> 1.3.6'
 
 
 group :test do

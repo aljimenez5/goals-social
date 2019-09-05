@@ -17,7 +17,7 @@ gem 'rack-flash3'
 gem 'bcrypt'
 gem 'tux'
 gem 'puma'
-gem 'sqlite3', '~> 1.3.6'
+
 
 
 group :test do
@@ -25,4 +25,8 @@ group :test do
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+end
+
+group :development do
+  gem 'sqlite3', '~> 1.3.6'
 end

@@ -4,7 +4,7 @@ ruby '2.6.1'
 
 gem 'bundler', '~> 2.0.2'
 gem 'sinatra'
-gem 'activerecord', '~> 4.2.6', :require => 'active_record'
+gem 'activerecord', '~> 6.1.7', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
